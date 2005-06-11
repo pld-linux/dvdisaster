@@ -7,6 +7,7 @@ License:	GPL v2
 Group:		Development
 Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tgz
 # Source0-md5:	4641d8f569f387f2f85ff4bf17b453ac
+BuildRequires:	glib2-devel
 URL:		http://dvdisaster.berlios.de/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
