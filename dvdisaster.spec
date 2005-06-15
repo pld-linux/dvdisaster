@@ -20,8 +20,8 @@ media caused by aging or scratches.
 
  - dvdisaster tries to read as much data as possible from defective
    media. Afterwards unreadable sectors are recovered using the
-   previously created error correction code. The maximum error
-   correction capacity is user-selectable.
+   previously created error correction code. The maximum error correction
+   capacity is user-selectable.
 
 If you create the error correction code file in time and keep it at a
 safe place, you have a good chance of recovering the medium contents
