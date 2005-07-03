@@ -1,14 +1,20 @@
 Summary:	dvdisaster - Additional error correction for CD and DVD media
 Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
 Name:		dvdisaster
-Version:	0.55
+Version:	0.62
 Release:	1
 License:	GPL v2
-Group:		Development
-Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tgz
-# Source0-md5:	4641d8f569f387f2f85ff4bf17b453ac
+Group:		X11/Applications
+Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tbz
+# Source0-md5:	0959193113bd59d043942f7cb4054498
+Patch0:		%{name}-DESTDIR.patch
+URL:		http://www.dvdisaster.com/
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
-URL:		http://dvdisaster.berlios.de/
+BuildRequires:	gtk+2-devel
+BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
+BuildRequires:	which
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,21 +53,36 @@ nowy no¶nik.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%configure
+%{__sed} -i 's,gawk,awk,g' locale/create-makefile
+%configure2_13
 %{__make} \
 	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{de,en,images}
 
-install -D dvdisaster $RPM_BUILD_ROOT%{_bindir}/dvdisaster
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+cp -rf documentation/* $RPM_BUILD_ROOT%{_datadir}/%{name}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CHANGELOG README TODO TRANSLATION.HOWTO CREDITS documentation/*
+%doc CHANGELOG CREDITS DRIVE-NOTES README TODO TRANSLATION.HOWTO
 %attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/dvdisaster/images
+%{_datadir}/dvdisaster/en
+%{_datadir}/dvdisaster/images/*-en.*
+%{_datadir}/dvdisaster/images/open-*
+%{_datadir}/dvdisaster/images/*.jpg
+%lang(de) %{_datadir}/dvdisaster/de
+%lang(de) %{_datadir}/dvdisaster/images/*-de.*
