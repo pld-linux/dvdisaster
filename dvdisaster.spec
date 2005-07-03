@@ -1,3 +1,6 @@
+# TODO:
+# - make desktop file
+#
 Summary:	dvdisaster - Additional error correction for CD and DVD media
 Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
 Name:		dvdisaster
@@ -63,12 +66,9 @@ nowy no¶nik.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{de,en,images}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-cp -rf documentation/* $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %find_lang %{name}
 
@@ -78,11 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc CHANGELOG CREDITS DRIVE-NOTES README TODO TRANSLATION.HOWTO
+%doc documentation/en documentation/images
+%lang(de) %doc documentation/de
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}/dvdisaster/images
-%{_datadir}/dvdisaster/en
-%{_datadir}/dvdisaster/images/*-en.*
-%{_datadir}/dvdisaster/images/open-*
-%{_datadir}/dvdisaster/images/*.jpg
-%lang(de) %{_datadir}/dvdisaster/de
-%lang(de) %{_datadir}/dvdisaster/images/*-de.*
