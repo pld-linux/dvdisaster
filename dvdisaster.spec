@@ -4,12 +4,12 @@
 Summary:	dvdisaster - Additional error correction for CD and DVD media
 Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
 Name:		dvdisaster
-Version:	0.62
+Version:	0.63
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tbz
-# Source0-md5:	0959193113bd59d043942f7cb4054498
+# Source0-md5:	c497d9231add3ded6cd3b96ac3f4b5ab
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.dvdisaster.com/
 BuildRequires:	gettext-devel
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CHANGELOG CREDITS DRIVE-NOTES README TODO TRANSLATION.HOWTO
+%doc CHANGELOG CREDITS.en DRIVE-NOTES README TODO TRANSLATION.HOWTO
 %doc documentation/en documentation/images
-%lang(de) %doc documentation/de
+%lang(de) %doc CREDITS.de documentation/de
 %attr(755,root,root) %{_bindir}/*
