@@ -1,40 +1,49 @@
---- dvdisaster-0.62/Makefile.template.orig	2005-06-27 15:20:24.000000000 +0200
-+++ dvdisaster-0.62/Makefile.template	2005-07-03 22:21:10.000000000 +0200
-@@ -119,23 +119,23 @@
+--- dvdisaster-0.64/Makefile.template.orig	2005-09-10 16:17:34.000000000 +0200
++++ dvdisaster-0.64/Makefile.template	2005-10-19 16:52:33.000000000 +0200
+@@ -126,36 +126,25 @@
  install: dvdisaster
  	@if ! test -e documentation/de/index.html; then make html; fi 
  	@echo "Installing package..."
 -	install -d $(BINDIR)
 -	install dvdisaster$(EXE_SUFFIX) $(BINDIR)
--	install -d $(DOCDIR)
--	install COPYING $(DOCDIR)
--	install CHANGELOG $(DOCDIR)
--	install TODO $(DOCDIR)
--	install -d $(DOCDIR)/de
--	cd documentation; install -m 644 de/* $(DOCDIR)/de
--	install -d $(DOCDIR)/en
--	cd documentation; install -m 644 en/* $(DOCDIR)/en
--	install -d $(DOCDIR)/images
--	cd documentation; install -m 644 images/* $(DOCDIR)/images
+-	install -d $(DOCSUBDIR)
+-	install -m 644 CHANGELOG $(DOCSUBDIR)
+-	install -m 644 COPYING $(DOCSUBDIR)
+-	install -m 644 CREDITS* $(DOCSUBDIR)
+-	install -m 644 TODO $(DOCSUBDIR)
+-	install -d $(DOCSUBDIR)/de
+-	cd documentation; install -m 644 de/* $(DOCSUBDIR)/de
+-	install -d $(DOCSUBDIR)/en
+-	cd documentation; install -m 644 en/* $(DOCSUBDIR)/en
+-	install -d $(DOCSUBDIR)/images
+-	cd documentation; install -m 644 images/* $(DOCSUBDIR)/images
+-	install -d $(MANDIR)/man1
+-	install -d $(MANDIR)/de/man1
+-	install -d $(MANDIR)/it/man1
 +	install -d $(DESTDIR)$(BINDIR)
 +	install dvdisaster$(EXE_SUFFIX) $(DESTDIR)$(BINDIR)
-+	install -d $(DESTDIR)$(DOCDIR)
-+	install COPYING $(DESTDIR)$(DOCDIR)
-+	install CHANGELOG $(DESTDIR)$(DOCDIR)
-+	install TODO $(DESTDIR)$(DOCDIR)
-+	install -d $(DESTDIR)$(DOCDIR)/de
-+	cd documentation; install -m 644 de/* $(DESTDIR)$(DOCDIR)/de
-+	install -d $(DESTDIR)$(DOCDIR)/en
-+	cd documentation; install -m 644 en/* $(DESTDIR)$(DOCDIR)/en
-+	install -d $(DESTDIR)$(DOCDIR)/images
-+	cd documentation; install -m 644 images/* $(DESTDIR)$(DOCDIR)/images
++	install -d $(DESTDIR)$(MANDIR)/man1
++	install -d $(DESTDIR)$(MANDIR)/de/man1
++	install -d $(DESTDIR)$(MANDIR)/it/man1
+ 	cd documentation; \
+ 	  ESCAPED_DOCSUBDIR=`echo $(DOCSUBDIR) | sed -e 's/\//\\\\\//g'`; \
+ 	  sed "s/%docdir%/$$ESCAPED_DOCSUBDIR\/en/" <dvdisaster.en.1 >dvdisaster.updated; \
+-	  install -m 644 dvdisaster.updated $(MANDIR)/man1/dvdisaster.1; \
++	  install -m 644 dvdisaster.updated $(DESTDIR)$(MANDIR)/man1/dvdisaster.1; \
+ 	  sed "s/%docdir%/$$ESCAPED_DOCSUBDIR\/de/" <dvdisaster.de.1 >dvdisaster.updated; \
+-	  install -m 644 dvdisaster.updated $(MANDIR)/de/man1/dvdisaster.1; \
++	  install -m 644 dvdisaster.updated $(DESTDIR)$(MANDIR)/de/man1/dvdisaster.1; \
+ 	  sed "s/%docdir%/$$ESCAPED_DOCSUBDIR\/en/" <dvdisaster.it.1 >dvdisaster.updated; \
+-	  install -m 644 dvdisaster.updated $(MANDIR)/it/man1/dvdisaster.1; \
++	  install -m 644 dvdisaster.updated $(DESTDIR)$(MANDIR)/it/man1/dvdisaster.1; \
+ 	  rm dvdisaster.updated
  	if echo $(WITH_OPTIONS) | grep -q "NLS_YES"; then \
  	  cd locale; \
  	  for i in ??; do\
 -	    install -d $(LOCALEDIR)/$$i/LC_MESSAGES; \
--	    install $$i/LC_MESSAGES/dvdisaster.mo $(LOCALEDIR)/$$i/LC_MESSAGES; \
+-	    install -m 644 $$i/LC_MESSAGES/dvdisaster.mo $(LOCALEDIR)/$$i/LC_MESSAGES; \
 +	    install -d $(DESTDIR)$(LOCALEDIR)/$$i/LC_MESSAGES; \
-+	    install $$i/LC_MESSAGES/dvdisaster.mo $(DESTDIR)$(LOCALEDIR)/$$i/LC_MESSAGES; \
++	    install -m 644 $$i/LC_MESSAGES/dvdisaster.mo $(DESTDIR)$(LOCALEDIR)/$$i/LC_MESSAGES; \
  	  done \
  	fi
  
