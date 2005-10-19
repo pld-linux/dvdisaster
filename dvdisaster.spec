@@ -4,13 +4,14 @@
 Summary:	dvdisaster - Additional error correction for CD and DVD media
 Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
 Name:		dvdisaster
-Version:	0.63
+Version:	0.64
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tbz
-# Source0-md5:	c497d9231add3ded6cd3b96ac3f4b5ab
+Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tar.bz
+# Source0-md5:	cc119427304d5181932b6bf5c0d2e7b5
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-configure.patch
 URL:		http://www.dvdisaster.com/
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
@@ -57,12 +58,13 @@ nowy no¶nik.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__sed} -i 's,gawk,awk,g' locale/create-makefile
-%configure2_13
-%{__make} \
-	CFLAGS="%{rpmcflags}"
+%configure2_13 \
+	--localedir=%{_datadir}/locale
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -81,3 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc documentation/en documentation/images
 %lang(de) %doc CREDITS.de documentation/de
 %attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
+%lang(de) %{_mandir}/de/man1/*
+%lang(it) %{_mandir}/it/man1/*
