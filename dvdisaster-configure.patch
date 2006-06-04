@@ -5,7 +5,7 @@
     if (make -v | grep "GNU Make") > /dev/null 2>&1 ;
       then echo "yes"
 -	  echo "MAKE = `which make`" >>Makefile.config
-+	  echo "MAKE = /usr/bin/nake" >>Makefile.config
++	  echo "MAKE = /usr/bin/make" >>Makefile.config
  	  return 0
     fi;
  
