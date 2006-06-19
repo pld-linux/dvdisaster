@@ -1,18 +1,16 @@
-# TODO:
-# - make desktop file
-#
 Summary:	dvdisaster - Additional error correction for CD and DVD media
 Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
 Name:		dvdisaster
-Version:	0.64.2
+Version:	0.66
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://download.berlios.de/dvdisaster/%{name}-%{version}.tar.bz2
-# Source0-md5:	166b0efa724da90fd38212eda2ed352e
+# Source0-md5:	0bae5ab6bad8c4613d1250609ed1fbab
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-configure.patch
 URL:		http://www.dvdisaster.com/
+BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel
@@ -63,14 +61,19 @@ nowy no¶nik.
 %build
 %{__sed} -i 's,gawk,awk,g' locale/create-makefile
 %configure2_13 \
+	--buildroot=$RPM_BUILD_ROOT \
+	--docdir=%{_docdir} \
 	--localedir=%{_datadir}/locale
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%{__make} install
+
+install contrib/dvdisaster48.png $RPM_BUILD_ROOT%{_pixmapsdir}
+install contrib/%{name}.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 %find_lang %{name}
 
@@ -81,8 +84,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGELOG CREDITS.en DRIVE-NOTES README TODO TRANSLATION.HOWTO
 %doc documentation/en documentation/images
+%lang(cs) %doc CREDITS.cs documentation/cs
 %lang(de) %doc CREDITS.de documentation/de
 %attr(755,root,root) %{_bindir}/*
+%{_desktopdir}/*
 %{_mandir}/man1/*
+%lang(cs) %{_mandir}/cs/man1/*
 %lang(de) %{_mandir}/de/man1/*
 %lang(it) %{_mandir}/it/man1/*
+%{_pixmapsdir}/*
