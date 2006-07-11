@@ -1,6 +1,6 @@
---- dvdisaster-0.66/GNUmakefile.template.orig	2006-03-21 20:04:19.000000000 +0100
-+++ dvdisaster-0.66/GNUmakefile.template	2006-06-19 04:54:22.593421750 +0200
-@@ -181,26 +181,6 @@
+--- GNUmakefile.template	2006-07-09 14:35:01.000000000 +0200
++++ GNUmakefile.template-new	2006-07-11 17:28:03.545563376 +0200
+@@ -210,27 +210,6 @@
  	@echo "Installing package..."
  	install -d $(BUILDROOT)$(BINDIR)
  	install dvdisaster$(EXE_SUFFIX) $(BUILDROOT)$(BINDIR)
@@ -8,6 +8,7 @@
 -	install -m 644 CHANGELOG $(BUILDROOT)$(DOCSUBDIR)
 -	install -m 644 COPYING $(BUILDROOT)$(DOCSUBDIR)
 -	install -m 644 CREDITS* $(BUILDROOT)$(DOCSUBDIR)
+-	install -m 644 README.MODIFYING $(BUILDROOT)$(DOCSUBDIR)
 -	install -m 644 TODO $(BUILDROOT)$(DOCSUBDIR)
 -	install -d $(BUILDROOT)$(DOCSUBDIR)/cs
 -	cd documentation; install -m 644 cs/*.html $(BUILDROOT)$(DOCSUBDIR)/cs
@@ -27,21 +28,28 @@
  	install -d $(BUILDROOT)$(MANDIR)/man1
  	install -d $(BUILDROOT)$(MANDIR)/cs/man1
  	install -d $(BUILDROOT)$(MANDIR)/de/man1
-@@ -223,17 +203,6 @@
+@@ -253,19 +232,6 @@
  	    install -m 644 $$i/LC_MESSAGES/dvdisaster.mo $(BUILDROOT)$(LOCALEDIR)/$$i/LC_MESSAGES; \
  	  done \
  	fi
--	@echo "# dvdisaster uninstaller script" > $(BINDIR)/dvdisaster-uninstall.sh
--	@echo "# Usage: sh dvdisaster-uninstall.sh" >> $(BINDIR)/dvdisaster-uninstall.sh
--	@echo >> $(BINDIR)/dvdisaster-uninstall.sh
--	@echo "rm -f $(BINDIR)/dvdisaster $(BINDIR)/dvdisaster.exe $(BINDIR)/dvdisaster-win.exe $(BINDIR)/dvdisaster-uninstall.sh" >> $(BINDIR)/dvdisaster-uninstall.sh
--	@echo "rm -rf $(DOCSUBDIR)" >> $(BINDIR)/dvdisaster-uninstall.sh
--	@echo "rm -f $(MANDIR)/man1/dvdisaster.1" >> $(BINDIR)/dvdisaster-uninstall.sh
--	@for i in cs de it; do \
--	  echo "rm $(LOCALEDIR)/$$i/LC_MESSAGES/dvdisaster.mo" >> $(BINDIR)/dvdisaster-uninstall.sh ; \
--	  echo "rm $(MANDIR)/$$i/man1/dvdisaster.1" >> $(BINDIR)/dvdisaster-uninstall.sh ; \
+-	@echo "# dvdisaster uninstaller script" > $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@echo "# Usage: sh dvdisaster-uninstall.sh" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@echo >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@echo "rm -f $(BINDIR)/dvdisaster $(BINDIR)/dvdisaster.exe $(BINDIR)/dvdisaster-win.exe $(BINDIR)/dvdisaster-uninstall.sh" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@echo "rm -rf $(DOCSUBDIR)" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@echo "rm -f $(MANDIR)/man1/dvdisaster.1" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
+-	@for i in $(PO_LOCALES); do \
+-	  echo "rm $(LOCALEDIR)/$$i/LC_MESSAGES/dvdisaster.mo" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh ; \
 -	done
--	@echo "echo \"dvdisaster has been uninstalled.\"" >> $(BINDIR)/dvdisaster-uninstall.sh
+-	@for i in $(MAN_LOCALES); do \
+-	  echo "rm $(MANDIR)/$$i/man1/dvdisaster.1" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh ; \
+-	done
+-	@echo "echo \"dvdisaster has been uninstalled.\"" >> $(BUILDROOT)$(BINDIR)/dvdisaster-uninstall.sh
  	
  uninstall:
  	@echo "Uninstalling package..."
+@@ -410,4 +376,3 @@
+ zipdist: prepare-dist
+ 	@echo "Packaging with zip"
+ 	@echo "MS Windows standalone distribution of $(PKGNAME)." | zip -S9rqoz $(PKGNAME).zip $(PKGNAME)
+-
