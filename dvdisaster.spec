@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %doc CREDITS.cs documentation/cs
 %lang(de) %doc CREDITS.de documentation/de
 %attr(755,root,root) %{_bindir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(de) %{_mandir}/de/man1/*
