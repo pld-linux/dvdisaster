@@ -1,5 +1,5 @@
 Summary:	dvdisaster - Additional error correction for CD and DVD media
-Summary(pl.UTF-8):   dvdisaster - dodatkowa korekcja błędów dla nośników CD i DVD
+Summary(pl.UTF-8):	dvdisaster - dodatkowa korekcja błędów dla nośników CD i DVD
 Name:		dvdisaster
 Version:	0.70.1
 Release:	1
