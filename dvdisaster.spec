@@ -1,5 +1,5 @@
 Summary:	dvdisaster - Additional error correction for CD and DVD media
-Summary(pl):	dvdisaster - dodatkowa korekcja b³êdów dla no¶ników CD i DVD
+Summary(pl.UTF-8):   dvdisaster - dodatkowa korekcja bÅ‚Ä™dÃ³w dla noÅ›nikÃ³w CD i DVD
 Name:		dvdisaster
 Version:	0.70.1
 Release:	1
@@ -36,22 +36,22 @@ safe place, you have a good chance of recovering the medium contents
 from typical read errors and to transfer your complete data onto a new
 medium.
 
-%description -l pl
-dvdisaster zapewnia margines bezpieczeñstwa przed utrat± danych na
-no¶nikach CD i DVD spowodowan± wiekem lub rysami.
+%description -l pl.UTF-8
+dvdisaster zapewnia margines bezpieczeÅ„stwa przed utratÄ… danych na
+noÅ›nikach CD i DVD spowodowanÄ… wiekem lub rysami.
 
-- dvdisaster tworzy kody korekcji b³êdów równowa¿±ce b³êdy odczytu
-  niemo¿liwe do poprawienia przez napêd CD/DVD.
+- dvdisaster tworzy kody korekcji bÅ‚Ä™dÃ³w rÃ³wnowaÅ¼Ä…ce bÅ‚Ä™dy odczytu
+  niemoÅ¼liwe do poprawienia przez napÄ™d CD/DVD.
 
-- dvdisaster próbuje odczytaæ tyle danych ile to tylko mo¿liwe z
-  uszkodzonego no¶nika. Nastêpnie odzyskuje nieczytelne sektory przy
-  u¿yciu poprzednio utworzonego kodu korekcji b³êdów. Maksymalna
-  mo¿liwo¶æ korekcji b³êdów jest wybierana przez u¿ytkownika.
+- dvdisaster prÃ³buje odczytaÄ‡ tyle danych ile to tylko moÅ¼liwe z
+  uszkodzonego noÅ›nika. NastÄ™pnie odzyskuje nieczytelne sektory przy
+  uÅ¼yciu poprzednio utworzonego kodu korekcji bÅ‚Ä™dÃ³w. Maksymalna
+  moÅ¼liwoÅ›Ä‡ korekcji bÅ‚Ä™dÃ³w jest wybierana przez uÅ¼ytkownika.
 
-Je¶li w porê utworzymy plik z kodem korekcji b³êdów i bêdziemy trzymaæ
-go w bezpiecznym miejscu, mamy du¿e szanse odzyskania zawarto¶ci
-no¶nika przy typowych b³êdach odczytu i przeniesienia ca³ych danych na
-nowy no¶nik.
+JeÅ›li w porÄ™ utworzymy plik z kodem korekcji bÅ‚Ä™dÃ³w i bÄ™dziemy trzymaÄ‡
+go w bezpiecznym miejscu, mamy duÅ¼e szanse odzyskania zawartoÅ›ci
+noÅ›nika przy typowych bÅ‚Ä™dach odczytu i przeniesienia caÅ‚ych danych na
+nowy noÅ›nik.
 
 %prep
 %setup -q -n %{name}-0.70
