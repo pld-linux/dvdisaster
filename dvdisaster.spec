@@ -11,7 +11,7 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-configure.patch
 URL:		http://www.dvdisaster.com/
 BuildRequires:	bzip2-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	pkgconfig
