@@ -55,8 +55,8 @@ nowy nośnik.
 
 %prep
 %setup -q -n %{name}-0.70
-%patch0 -p0
-%patch1 -p1
+%patch -P0 -p0
+%patch -P1 -p1
 
 %build
 %{__sed} -i 's,gawk,awk,g' locale/create-makefile
